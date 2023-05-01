@@ -12,7 +12,15 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
 Route::get('/', function () {
-    return view('manage');
+    return 'this is front';
 });
+
+Route::get('management', function () {
+    return redirect('management/auth');
+});
+
+Route::get('management/{any}',static function (){
+    return view('manage');
+})->where('any','(.*)');
+

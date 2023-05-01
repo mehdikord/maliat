@@ -8,9 +8,9 @@
 
                 <q-toolbar-title>
                     <q-avatar>
-                        <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg">
+                        <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg"  alt="test">
                     </q-avatar>
-                    Title
+                    Control Panel
                 </q-toolbar-title>
 
 <!--                <q-btn dense flat round icon="mdi-menu" @click="toggleRightDrawer" />-->
@@ -18,8 +18,11 @@
         </q-header>
 
         <q-drawer show-if-above v-model="leftDrawerOpen" side="left" bordered>
+
             <!-- drawer content -->
-            test
+            <Template_Menu></Template_Menu>
+
+
         </q-drawer>
 
 <!--        <q-drawer show-if-above v-model="rightDrawerOpen" side="right" bordered>-->
@@ -28,6 +31,9 @@
 <!--        </q-drawer>-->
 
         <q-page-container>
+            <q-page padding>
+                <Template_Content></Template_Content>
+            </q-page>>
 
         </q-page-container>
 
@@ -39,8 +45,14 @@
 
 <script>
 import {ref} from 'vue';
+import Manage_Template_Menu from "./includes/Manage_Template_Menu.vue";
+import Manage_Template_Content from "./includes/Manage_Template_Content.vue";
 export default {
     name: "show",
+    components: {
+        "Template_Menu" : Manage_Template_Menu,
+        'Template_Content' : Manage_Template_Content
+    },
     setup () {
         const leftDrawerOpen = ref(false)
         const rightDrawerOpen = ref(false)

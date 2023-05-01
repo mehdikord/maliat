@@ -1,4 +1,5 @@
 import {createApp} from "vue";
+import router from "./routes/manage";
 import show from "./manage/template/show.vue";
 import { Quasar } from 'quasar';
 import quasarIconSet from 'quasar/icon-set/mdi-v7';
@@ -10,7 +11,11 @@ import '@quasar/extras/mdi-v7/mdi-v7.css';
 // Import Quasar css
 import 'quasar/dist/quasar.css';
 
+
+
 const App=createApp(show);
+
+// +++++++++++++++++++ App Uses +++++++++++++++++++
 
 App.use(Quasar, {
     plugins: {}, // import Quasar plugins and add here
@@ -28,7 +33,9 @@ App.use(Quasar, {
     }
     */
 })
+App.use(router)
 
+// ++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 App.mount('#app')
