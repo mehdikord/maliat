@@ -2,17 +2,19 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Schema;
+use App\Interfaces\Auth\AuthInterface;
+use App\Repository\Auth\AuthRepository;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class RepositoryInterfaceServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
      */
     public function register(): void
     {
-        $this->app->register(RepositoryInterfaceServiceProvider::class);
+        $this->app->bind(AuthInterface::class,AuthRepository::class);
+
     }
 
     /**
@@ -20,6 +22,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Schema::defaultStringLength(225);
+
     }
 }

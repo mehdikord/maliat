@@ -10,12 +10,20 @@ import '@quasar/extras/fontawesome-v6/fontawesome-v6.css';
 import '@quasar/extras/mdi-v7/mdi-v7.css';
 // Import Quasar css
 import 'quasar/dist/quasar.css';
-
+import './bootstrap';
+import Helper from "./helpers/Helper";
+import Error_Validation from "./manage/errors/Error_Validation.vue";
 
 
 const App=createApp(show);
 
-// +++++++++++++++++++ App Uses +++++++++++++++++++
+// ++++++++++ Global Components ++++++++++
+
+App.component('Error_Validation',Error_Validation)
+
+// ++++++++++++++++++++
+
+// ++++++++++ App Uses ++++++++++
 
 App.use(Quasar, {
     plugins: {}, // import Quasar plugins and add here
@@ -34,8 +42,29 @@ App.use(Quasar, {
     */
 })
 App.use(router)
+window.Helper = Helper
 
-// ++++++++++++++++++++++++++++++++++++++++++++++++
+// ++++++++++++++++++++
+
+// ++++++++++ Global Functions (Mixin) ++++++++++
+
+App.mixin({
+
+    //Methods
+    methods:{
+        MixinValidation(errors,field){
+            return Helper.HelperValidationErrors(errors,field);
+        },
+        MixinValidationCheck(errors,field){
+            return Helper.HelperValidationCheck(errors,field);
+        },
+    }
+
+
+})
+
+// ++++++++++++++++++++
+
 
 
 App.mount('#app')

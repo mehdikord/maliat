@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 Route::get('management', function () {
-    return redirect('management/auth');
+    return redirect('management/dashboard');
 });
 
 Route::get('management/{any}',static function (){

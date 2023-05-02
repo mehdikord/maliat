@@ -1,8 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Manage_Dashboard from "../manage/pages/dashboard/Manage_Dashboard.vue";
+import Manage_Auth from "../manage/pages/auth/Manage_Auth.vue";
 
 const routes = [
 
+    {
+        path : "/management/login",
+        name : "login",
+        component : Manage_Auth,
+        meta : { title : "Management Login"}
+    },
     {
         path : "/management/dashboard",
         name : "dashboard",

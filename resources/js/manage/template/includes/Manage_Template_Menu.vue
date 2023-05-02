@@ -23,12 +23,11 @@
                 <q-item-section avatar>
                     <q-icon color="indigo" name="mdi-bluetooth" />
                 </q-item-section>
-                <q-item-section>Members</q-item-section>
+                <q-item-section> Members </q-item-section>
 
             </q-item>
 
         </q-expansion-item>
-
 
 
     </q-list>
