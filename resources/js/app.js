@@ -16,6 +16,7 @@ import Store from "./store";
 import Helper from "./helpers/Helper";
 import Error_Validation from "./manage/errors/Error_Validation.vue";
 import {mapGetters} from "vuex";
+import Manage_Global_Loading from "./manage/template/global/Manage_Global_Loading.vue";
 
 
 const App=createApp(show);
@@ -23,6 +24,7 @@ const App=createApp(show);
 // ++++++++++ Global Components ++++++++++
 
 App.component('Error_Validation',Error_Validation)
+App.component('Global_Loading',Manage_Global_Loading)
 
 // ++++++++++++++++++++
 
@@ -34,14 +36,14 @@ App.use(Quasar, {
     }, // import Quasar plugins and add here
     iconSet: quasarIconSet,
     config: {
+
       brand: {
+
         // primary: '#e46262',
         // ... or all other brand colors
       },
       notify: {}, // default set of options for Notify Quasar plugin
-      //loading: {...}, // default set of options for Loading Quasar plugin
-      //loadingBar: { ... }, // settings for LoadingBar Quasar plugin
-      //..and many more (check Installation card on each Quasar component/directive/plugin)
+
     }
 })
 App.use(router)
@@ -91,6 +93,9 @@ App.mixin({
         },
         NotifyDelete(){
             this.NotifyMessage('the item deleted success','positive')
+        },
+        NotifyServerError(){
+            this.NotifyError('Server error');
         },
         NotifySuccess(message){
             this.NotifyMessage(message,'positive')

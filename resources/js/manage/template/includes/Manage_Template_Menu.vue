@@ -11,12 +11,11 @@
 
         <q-expansion-item :content-inset-level="0.3" expand-separator icon="mdi-account-group" label="Users">
 
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple :to="{name : 'users_managers'}">
                 <q-item-section avatar>
                     <q-icon color="indigo" name="mdi-account-tie" />
                 </q-item-section>
                 <q-item-section>Managers</q-item-section>
-
             </q-item>
 
             <q-item clickable v-ripple>

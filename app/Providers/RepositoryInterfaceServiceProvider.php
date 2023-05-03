@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use App\Interfaces\Auth\AuthInterface;
 use App\Interfaces\Profile\ProfileInterface;
+use App\Interfaces\Users\UsersInterface;
 use App\Repository\Auth\AuthRepository;
 use App\Repository\Profile\ProfileRepository;
+use App\Repository\Users\UsersRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryInterfaceServiceProvider extends ServiceProvider
@@ -17,6 +19,7 @@ class RepositoryInterfaceServiceProvider extends ServiceProvider
     {
         $this->app->bind(AuthInterface::class,AuthRepository::class);
         $this->app->bind(ProfileInterface::class,ProfileRepository::class);
+        $this->app->bind(UsersInterface::class,UsersRepository::class);
 
     }
 

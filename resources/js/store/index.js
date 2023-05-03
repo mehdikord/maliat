@@ -1,4 +1,5 @@
 import {createStore} from "vuex";
+import managers from "./modules/users/managers";
 const store = createStore({
     state(){
         return {
@@ -6,6 +7,12 @@ const store = createStore({
 
         }
     },
+
+    modules:{
+        managers,
+
+    },
+
     mutations : {
         AuthManageLogin(state,item){
             state.Auth_Manage = item

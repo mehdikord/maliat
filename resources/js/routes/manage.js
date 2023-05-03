@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Manage_Dashboard from "../manage/pages/dashboard/Manage_Dashboard.vue";
 import Manage_Auth from "../manage/pages/auth/Manage_Auth.vue";
 import store from "../store"
+import Manage_Users_Managers from "@/manage/pages/users/Manage_Users_Managers.vue";
 
 const routes = [
 
@@ -16,6 +17,12 @@ const routes = [
         name : "dashboard",
         component : Manage_Dashboard,
         meta : { title : "Management Dashboard"}
+    },
+    {
+        path : "/management/users/managers",
+        name : "users_managers",
+        component : Manage_Users_Managers,
+        meta : { title : "Users Managers"}
     },
 
 

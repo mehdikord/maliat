@@ -19,12 +19,24 @@
                         <q-list style="min-width: 200px">
                             <q-item>
                                 <q-icon name="mdi-account" size="md" color="indigo"></q-icon>
-                                <strong class="q-mt-xs">Mehdi Kord</strong>
+                                <strong class="q-mt-xs">
+                                    {{ AuthUser.name }}
+                                </strong>
+                            </q-item>
+                            <q-item>
+                                <q-icon name="mdi-email" size="md" color="indigo"></q-icon>
+                                <strong class="q-mt-xs">
+                                    {{ AuthUser.email }}
+                                </strong>
                             </q-item>
 
                             <q-separator />
                             <q-item clickable>
-                                <q-item-section>Mind blown</q-item-section>
+                                <q-icon name="mdi-exit" size="md" color="dark"></q-icon>
+                                <strong class="q-mt-xs text-red">
+                                    Logout
+                                </strong>
+
                             </q-item>
                         </q-list>
                     </q-menu>
@@ -43,6 +55,7 @@
 
         <q-page-container>
                 <div class="q-pa-md">
+                    <h6 class="q-mt-xs q-mb-md text-teal-6 font-18">{{ this.$route.meta.title }}</h6>
                     <Template_Content></Template_Content>
                 </div>
         </q-page-container>
@@ -57,6 +70,7 @@
 import {ref} from 'vue';
 import Manage_Template_Menu from "./includes/Manage_Template_Menu.vue";
 import Manage_Template_Content from "./includes/Manage_Template_Content.vue";
+import {mapGetters} from "vuex";
 export default {
 
     name: "show",
@@ -80,6 +94,11 @@ export default {
             }
         }
     },
+    computed : {
+        ...mapGetters({
+            AuthUser : "AuthManageUser",
+        })
+    }
 
 }
 </script>

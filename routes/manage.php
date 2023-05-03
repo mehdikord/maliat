@@ -19,10 +19,22 @@ Route::prefix('auth')->group(function (){
 //enable auth middleware for authenticate
 Route::middleware('auth:admin')->group(function (){
 
+    //authenticated user
     Route::prefix('me')->group(function (){
         Route::get('',[\App\Http\Controllers\Manage\Profile\ProfileController::class,'me'])->name('me');
 
     });
+
+    //Members and Managers
+    Route::group(['prefix' => 'users','as' => 'users.'],function (){
+       Route::group(['prefix' => 'managers','as' => 'managers.'],function (){
+           Route::get('',[\App\Http\Controllers\Manage\Users\UserController::class,'managers_index'])->name('index');
+
+       });
+
+    });
+
+
 
 
 
