@@ -10,7 +10,7 @@
                     <h5 class="text-center q-my-md">Login to Control Panel</h5>
                     <p class="text-center text-grey-7 q-my-md">insert your email and password for login to account</p>
                     <div class="q-my-xl q-px-lg ">
-                        <q-input lazy-rules  type="email" outlined v-model="login.email" label="Email" color="primary" class="q-my-lg" :error="this.MixinValidationCheck(errors,'email')">
+                        <q-input lazy-rules  type="email" outlined v-model="login.email" label="Email" color="primary" class="q-my-md" :error="this.MixinValidationCheck(errors,'email')">
                             <template v-slot:append>
                                 <q-icon size="lg" name="mdi-email" color="teal"/>
                             </template>
@@ -19,7 +19,7 @@
                             </template>
 
                         </q-input>
-                        <q-input type="password" outlined v-model="login.password" label="Password" color="primary" class="q-my-lg" :error="this.MixinValidationCheck(errors,'password')">
+                        <q-input type="password" outlined v-model="login.password" label="Password" color="primary" class="q-my-md" :error="this.MixinValidationCheck(errors,'password')">
                             <template v-slot:append>
                                 <q-icon size="lg" name="mdi-lock" color="red-6"/>
                             </template>
@@ -45,6 +45,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import {mapGetters} from "vuex";
 export default {
     name: "Manage_Auth",
     data(){
@@ -58,10 +60,15 @@ export default {
         }
     },
     methods:{
+        ...mapActions([
+            'Auth_Manage_Login'
+
+        ]),
 
         Login(){
             this.loading=true;
             axios.post('auth/login',this.login).then(res => {
+                this.Auth_Manage_Login(res.data.result)
 
             }).catch(error => {
                 if (error.response.status === 422){

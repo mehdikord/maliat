@@ -36,7 +36,6 @@ class AuthRepository implements AuthInterface
             'access_token' => $token,
             'token_type' => 'bearer',
             'user' => auth('admin')->user(),
-            'expires_in' => auth()->factory()->getTTL() * 60
         ]);
     }
 
