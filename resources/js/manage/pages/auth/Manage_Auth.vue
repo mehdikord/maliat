@@ -46,40 +46,48 @@
 
 <script>
 import { mapActions } from 'vuex'
-import {mapGetters} from "vuex";
+
 export default {
-    name: "Manage_Auth",
-    data(){
-        return{
-            login:{
-                email:null,
-                password:null,
+    created() {
+
+    },
+    data() {
+        return {
+            login: {
+                email: null,
+                password: null,
             },
-            loading:false,
-            errors:[],
+            loading: false,
+            errors: [],
         }
     },
-    methods:{
+    methods: {
         ...mapActions([
             'Auth_Manage_Login'
-
         ]),
 
-        Login(){
-            this.loading=true;
-            axios.post('auth/login',this.login).then(res => {
-                this.Auth_Manage_Login(res.data.result)
-
+        Login() {
+            this.loading = true;
+            axios.post('auth/login', this.login).then(res => {
+                console.log(res.data)
+                this.Auth_Manage_Login(res.data)
+                this.NotifySuccess('You have successfully logged into your account');
+                return this.$router.push({name:'dashboard'})
             }).catch(error => {
-                if (error.response.status === 422){
+                if (error.response.status === 401) {
+                    this.loading = false;
+                    return this.NotifyError("email or password is wrong")
+                }
+                if (error.response.status === 422) {
                     this.errors = error.response.data
-                    this.loading=false;
+                    this.loading = false;
 
                 }
             })
 
         }
-    }
+    },
+    name: "Manage_Auth"
 }
 </script>
 

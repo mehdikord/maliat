@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Manage_Dashboard from "../manage/pages/dashboard/Manage_Dashboard.vue";
 import Manage_Auth from "../manage/pages/auth/Manage_Auth.vue";
+import store from "../store"
 
 const routes = [
 
@@ -32,15 +33,15 @@ router.beforeEach((to, from, next) => {
     // redirect to login page
 
 
-    // if (to.path !== '/auth' && !store.getters.AuthCheck) {
-    //     next('/auth');
-    // }else if (to.path === '/mama-admins/auth' && store.getters.AuthCheck){
-    //     next('/mama-admins/dashboard');
-    // }
-    // else {
-    //     next();
-    // }
-    next();
+    if (to.path !== '/management/login' && !store.getters.AuthManageCheck) {
+        next('/management/login');
+    }else if (to.path === '/management/login' && store.getters.AuthManageCheck){
+        next('/management/dashboard');
+    }
+    else {
+        next();
+    }
+
 });
 
 export default router

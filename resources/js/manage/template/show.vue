@@ -1,7 +1,7 @@
 <template>
 
     <q-layout view="hHh lpR fFf">
-        <q-header elevated class="bg-primary text-white">
+        <q-header elevated class="bg-indigo text-white q-py-sm">
             <q-toolbar>
                 <q-btn v-if="this.$route.name !== 'login'" dense flat round icon="mdi-menu" @click="toggleLeftDrawer"></q-btn>
 
@@ -11,7 +11,24 @@
                     </q-avatar>
                     Control Panel
                 </q-toolbar-title>
+                <q-btn color="teal" icon="mdi-account" round size="md">
+                    <q-menu
+                        transition-show="flip-right"
+                        transition-hide="flip-left"
+                    >
+                        <q-list style="min-width: 200px">
+                            <q-item>
+                                <q-icon name="mdi-account" size="md" color="indigo"></q-icon>
+                                <strong class="q-mt-xs">Mehdi Kord</strong>
+                            </q-item>
 
+                            <q-separator />
+                            <q-item clickable>
+                                <q-item-section>Mind blown</q-item-section>
+                            </q-item>
+                        </q-list>
+                    </q-menu>
+                </q-btn>
 
             </q-toolbar>
         </q-header>
@@ -41,6 +58,7 @@ import {ref} from 'vue';
 import Manage_Template_Menu from "./includes/Manage_Template_Menu.vue";
 import Manage_Template_Content from "./includes/Manage_Template_Content.vue";
 export default {
+
     name: "show",
     components: {
         "Template_Menu" : Manage_Template_Menu,
@@ -61,7 +79,8 @@ export default {
                 rightDrawerOpen.value = !rightDrawerOpen.value
             }
         }
-    }
+    },
+
 }
 </script>
 

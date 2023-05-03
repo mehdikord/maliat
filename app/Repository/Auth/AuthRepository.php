@@ -2,7 +2,6 @@
 namespace App\Repository\Auth;
 
 use App\Interfaces\Auth\AuthInterface;
-use function Symfony\Component\String\u;
 
 class AuthRepository implements AuthInterface
 {
