@@ -29,7 +29,16 @@ Route::middleware('auth:admin')->group(function (){
     Route::group(['prefix' => 'users','as' => 'users.'],function (){
        Route::group(['prefix' => 'managers','as' => 'managers.'],function (){
            Route::get('',[\App\Http\Controllers\Manage\Users\UserController::class,'managers_index'])->name('index');
+           Route::post('',[\App\Http\Controllers\Manage\Users\UserController::class,'managers_store'])->name('store');
+           Route::post('{admin}',[\App\Http\Controllers\Manage\Users\UserController::class,'managers_update'])->name('update');
+           Route::delete('{admin}',[\App\Http\Controllers\Manage\Users\UserController::class,'managers_delete'])->name('delete');
+       });
 
+       Route::group(['prefix' => 'members','as' => 'members.'],function (){
+            Route::get('',[\App\Http\Controllers\Manage\Users\UserController::class,'members_index'])->name('index');
+            Route::post('',[\App\Http\Controllers\Manage\Users\UserController::class,'members_store'])->name('store');
+            Route::post('{member}',[\App\Http\Controllers\Manage\Users\UserController::class,'members_update'])->name('update');
+            Route::delete('{member}',[\App\Http\Controllers\Manage\Users\UserController::class,'members_delete'])->name('delete');
        });
 
     });

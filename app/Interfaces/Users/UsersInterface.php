@@ -13,6 +13,15 @@ interface UsersInterface
 
     public function managers_delete($item);
 
+    //Members
+    public function members_index();
+
+    public function members_store($request);
+
+    public function members_update($request,$item);
+
+    public function members_delete($item);
+
 
 
 }

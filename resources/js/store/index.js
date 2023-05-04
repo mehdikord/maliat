@@ -1,5 +1,6 @@
 import {createStore} from "vuex";
 import managers from "./modules/users/managers";
+import members from "./modules/users/members";
 const store = createStore({
     state(){
         return {
@@ -10,6 +11,7 @@ const store = createStore({
 
     modules:{
         managers,
+        members
 
     },
 

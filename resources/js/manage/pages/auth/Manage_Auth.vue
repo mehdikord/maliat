@@ -17,7 +17,6 @@
                             <template v-slot:error>
                                 <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
                             </template>
-
                         </q-input>
                         <q-input type="password" outlined v-model="login.password" label="Password" color="primary" class="q-my-md" :error="this.MixinValidationCheck(errors,'password')">
                             <template v-slot:append>

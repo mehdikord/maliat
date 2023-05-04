@@ -3,6 +3,7 @@ import Manage_Dashboard from "../manage/pages/dashboard/Manage_Dashboard.vue";
 import Manage_Auth from "../manage/pages/auth/Manage_Auth.vue";
 import store from "../store"
 import Manage_Users_Managers from "@/manage/pages/users/Manage_Users_Managers.vue";
+import Manage_Users_Members from "../manage/pages/users/Manage_Users_Members.vue";
 
 const routes = [
 
@@ -24,7 +25,12 @@ const routes = [
         component : Manage_Users_Managers,
         meta : { title : "Users Managers"}
     },
-
+    {
+        path : "/management/users/members",
+        name : "users_members",
+        component : Manage_Users_Members,
+        meta : { title : "Users Members"}
+    },
 
 ]
 

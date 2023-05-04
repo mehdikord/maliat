@@ -135,7 +135,7 @@
 import {mapActions} from "vuex";
 
 export default {
-    name: "Manage_Users_Managers",
+    name: "Manage_Users_Members",
     created() {
         this.GetItems();
 

@@ -5,36 +5,36 @@ export default {
     state : {},
     mutations: {},
     actions:{
-        UserManagersIndex(){
+        UserMembersIndex(){
             return new Promise((resolve,reject) => {
-                axios.get('users/managers').then((result) => {
+                axios.get('users/members').then((result) => {
                     resolve(result);
                 }).catch(error => {
                     reject(error);
                 })
             } )
         },
-        UserManagersStore(_,item){
+        UserMembersStore(_,item){
             return new Promise((resolve,reject) => {
-                axios.post('users/managers',item).then((result) => {
+                axios.post('users/members',item).then((result) => {
                     resolve(result);
                 }).catch(error => {
                     reject(error);
                 })
             } )
         },
-        UserManagersEdit(_,item){
+        UserMembersEdit(_,item){
             return new Promise((resolve,reject) => {
-                axios.post('users/managers/'+item.id,item).then((result) => {
+                axios.post('users/members/'+item.id,item).then((result) => {
                     resolve(result);
                 }).catch(error => {
                     reject(error);
                 })
             } )
         },
-        UserManagersDelete(_,item){
+        UserMembersDelete(_,item){
             return new Promise((resolve,reject) => {
-                axios.delete('users/managers/'+item).then((result) => {
+                axios.delete('users/members/'+item).then((result) => {
                     resolve(result);
                 }).catch(error => {
                     reject(error);

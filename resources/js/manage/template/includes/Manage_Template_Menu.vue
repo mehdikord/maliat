@@ -18,7 +18,7 @@
                 <q-item-section>Managers</q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple :to="{name : 'users_members'}">
                 <q-item-section avatar>
                     <q-icon color="indigo" name="mdi-bluetooth" />
                 </q-item-section>

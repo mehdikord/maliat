@@ -4,8 +4,9 @@ namespace App\Http\Requests\Users;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
-class UsersManagerStoreRequest extends FormRequest
+class UsersMemberUpdateRequest extends FormRequest
 {
 
     /**
@@ -24,9 +25,15 @@ class UsersManagerStoreRequest extends FormRequest
 
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:admins',
-            'phone' => 'nullable|numeric|unique:admins',
-            'password' => 'required|confirmed'
+            'phone' => [
+                'nullable',
+                Rule::unique('users')->ignore($this->user->id),
+            ],
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($this->user->id),
+            ],
         ];
     }
     public function failedValidation(Validator $validator)

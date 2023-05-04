@@ -5,7 +5,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class UsersManagerStoreRequest extends FormRequest
+class UsersMemberStoreRequest extends FormRequest
 {
 
     /**
@@ -24,8 +24,8 @@ class UsersManagerStoreRequest extends FormRequest
 
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:admins',
-            'phone' => 'nullable|numeric|unique:admins',
+            'email' => 'required|email|unique:users',
+            'phone' => 'nullable|numeric|unique:users',
             'password' => 'required|confirmed'
         ];
     }
