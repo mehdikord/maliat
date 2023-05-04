@@ -15,29 +15,19 @@
                         <div class="text-h6">Add new item</div>
                     </q-card-section>
                     <q-card-section >
-                        <q-input v-model="add.name"  lazy-rules type="text" outlined label="Name" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
+                        <q-input v-model="add.title"  lazy-rules type="text" outlined label="Title" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'title')">
                             <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
+                                <Error_Validation :errors="this.MixinValidation(errors,'title')"></Error_Validation>
                             </template>
                         </q-input>
-                        <q-input v-model="add.email"  lazy-rules type="email" outlined label="Email" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'email')">
+                        <q-input v-model="add.question"  lazy-rules type="textarea" outlined label="Question" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'question')">
                             <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
+                                <Error_Validation :errors="this.MixinValidation(errors,'question')"></Error_Validation>
                             </template>
                         </q-input>
-                        <q-input v-model="add.phone" lazy-rules type="number" outlined label="Phone" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'phone')">
+                        <q-input v-model="add.answer"  lazy-rules type="textarea" outlined label="Answer" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'answer')">
                             <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'phone')"></Error_Validation>
-                            </template>
-                        </q-input>
-                        <q-input v-model="add.password" lazy-rules type="password" outlined label="Password" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'password')">
-                            <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'password')"></Error_Validation>
-                            </template>
-                        </q-input>
-                        <q-input v-model="add.password_confirmation" lazy-rules type="password" outlined label="Password confirmation" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'password_confirmation')">
-                            <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'password_confirmation')"></Error_Validation>
+                                <Error_Validation :errors="this.MixinValidation(errors,'answer')"></Error_Validation>
                             </template>
                         </q-input>
 
@@ -66,25 +56,7 @@
                 <template v-slot:loading>
                     <Global_Loading></Global_Loading>
                 </template>
-                <template v-slot:body-cell-phone="props">
-                    <q-td :props="props">
-                        <div v-if="props.row.phone">
-                            <q-chip color="teal-4" class="font-12">{{props.row.phone}}</q-chip>
-                        </div>
-                    </q-td>
-                </template>
-                <template v-slot:body-cell-is_active="props">
-                    <q-td :props="props">
-                        <q-toggle
-                            v-model="props.row.is_active"
-                            :false-value="0"
-                            :true-value="1"
-                            icon="mdi-check"
-                            color="green-7"
-                            @click="ChangeStatus(props.row.id)"
-                        />
-                    </q-td>
-                </template>
+
                 <template v-slot:body-cell-tools="props">
                     <q-td :props="props">
                         <q-btn @click="dialog_edit[props.row.id] = true;errors=[]" glossy color="primary" size="sm" icon="mdi-pen" class="q-mx-xs">
@@ -105,22 +77,22 @@
                                 <div class="text-h6">Edit item : {{props.row.name}}</div>
                             </q-card-section>
                             <q-card-section >
-                                <q-input v-model="props.row.name"  lazy-rules type="text" outlined label="Name" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
-                                    <template v-slot:error>
-                                        <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
-                                    </template>
-                                </q-input>
-                                <q-input v-model="props.row.email"  lazy-rules type="email" outlined label="Email" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'email')">
-                                    <template v-slot:error>
-                                        <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
-                                    </template>
-                                </q-input>
-                                <q-input v-model="props.row.phone" lazy-rules type="number" outlined label="Phone" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'phone')">
-                                    <template v-slot:error>
-                                        <Error_Validation :errors="this.MixinValidation(errors,'phone')"></Error_Validation>
-                                    </template>
-                                </q-input>
 
+                                <q-input v-model="props.row.title"  lazy-rules type="text" outlined label="Title" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'title')">
+                                    <template v-slot:error>
+                                        <Error_Validation :errors="this.MixinValidation(errors,'title')"></Error_Validation>
+                                    </template>
+                                </q-input>
+                                <q-input v-model="props.row.question"  lazy-rules type="textarea" outlined label="Question" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'question')">
+                                    <template v-slot:error>
+                                        <Error_Validation :errors="this.MixinValidation(errors,'question')"></Error_Validation>
+                                    </template>
+                                </q-input>
+                                <q-input v-model="props.row.answer"  lazy-rules type="textarea" outlined label="Answer" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'answer')">
+                                    <template v-slot:error>
+                                        <Error_Validation :errors="this.MixinValidation(errors,'answer')"></Error_Validation>
+                                    </template>
+                                </q-input>
 
                             </q-card-section>
 
@@ -147,7 +119,7 @@
 import {mapActions} from "vuex";
 
 export default {
-    name: "Manage_Users_Members",
+    name: "Manage_Faqs",
     created() {
         this.GetItems();
 
@@ -161,11 +133,10 @@ export default {
             dialog_add:false,
             dialog_edit:[],
             add:{
-                name:null,
-                email:null,
-                phone:null,
-                password:null,
-                password_confirmation:null,
+                title:null,
+                question:null,
+                answer:null,
+
             },
             item_columns:[
                 {
@@ -177,35 +148,27 @@ export default {
                     sortable: true
                 },
                 {
-                    name:'name',
+                    name:'title',
                     required: true,
-                    label: 'Name',
+                    label: 'Title',
                     align: 'left',
-                    field: row => row.name,
+                    field: row => row.title,
                     sortable: true
                 },
                 {
-                    name:'email',
+                    name:'question',
                     required: true,
-                    label: 'Email',
+                    label: 'Question',
                     align: 'left',
-                    field: row => row.email,
+                    field: row => row.question,
                     sortable: true
                 },
                 {
-                    name:'phone',
+                    name:'answer',
                     required: true,
-                    label: 'Phone',
+                    label: 'Answer',
                     align: 'left',
-                    field: row => row.phone,
-                    sortable: true
-                },
-                {
-                    name:'is_active',
-                    required: true,
-                    label: 'Account Status',
-                    align: 'left',
-                    field: row => row.is_active,
+                    field: row => row.answer,
                     sortable: true
                 },
                 {
@@ -220,16 +183,15 @@ export default {
     },
     methods:{
         ...mapActions([
-            "UserMembersIndex",
-            "UserMembersStore",
-            "UserMembersDelete",
-            "UserMembersEdit",
-            "UserMembersDChangeStatus"
+            "FaqsIndex",
+            "FaqsStore",
+            "FaqsDelete",
+            "FaqsEdit"
 
         ]),
         GetItems(){
 
-            this.UserMembersIndex().then(res => {
+            this.FaqsIndex().then(res => {
                 this.items = res.data.result;
                 this.loading_get=false;
             }).catch(error => {
@@ -238,7 +200,7 @@ export default {
         },
         AddItem(){
             this.loading_add=true;
-            this.UserMembersStore(this.add).then(res => {
+            this.FaqsStore(this.add).then(res => {
                 this.items.unshift(res.data.result);
                 this.loading_add=false;
                 this.dialog_add=false;
@@ -255,7 +217,7 @@ export default {
         },
         EditItem(item){
             this.loading_add=true;
-            this.UserMembersEdit(item).then(res => {
+            this.FaqsEdit(item).then(res => {
                 this.loading_add=false;
                 this.items = this.items.filter(item_get =>{
                     if (item_get.id === item.id){
@@ -289,7 +251,7 @@ export default {
                 },
                 persistent: true
             }).onOk(() => {
-                this.UserMembersDelete(id).then(res => {
+                this.FaqsDelete(id).then(res => {
                     this.items = this.items.filter(item =>{
                         return item.id !== id;
                     })
@@ -302,13 +264,6 @@ export default {
                 // console.log('>>>> Cancel')
             }).onDismiss(() => {
                 // console.log('I am triggered on both OK and Cancel')
-            })
-        },
-        ChangeStatus(id){
-            this.UserMembersDChangeStatus(id).then(res => {
-                return this.NotifySuccess('Account status change successful');
-            }).catch(error => {
-                return this.NotifyServerError();
             })
         }
 

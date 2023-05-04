@@ -37,9 +37,19 @@ Route::middleware('auth:admin')->group(function (){
        Route::group(['prefix' => 'members','as' => 'members.'],function (){
             Route::get('',[\App\Http\Controllers\Manage\Users\UserController::class,'members_index'])->name('index');
             Route::post('',[\App\Http\Controllers\Manage\Users\UserController::class,'members_store'])->name('store');
-            Route::post('{member}',[\App\Http\Controllers\Manage\Users\UserController::class,'members_update'])->name('update');
-            Route::delete('{member}',[\App\Http\Controllers\Manage\Users\UserController::class,'members_delete'])->name('delete');
+            Route::get('activation/{user}',[\App\Http\Controllers\Manage\Users\UserController::class,'members_activation'])->name('activation');
+            Route::post('{user}',[\App\Http\Controllers\Manage\Users\UserController::class,'members_update'])->name('update');
+            Route::delete('{user}',[\App\Http\Controllers\Manage\Users\UserController::class,'members_delete'])->name('delete');
        });
+
+    });
+
+    //Faqs
+    Route::group(['prefix' => 'faqs','as' => 'faqs.'],function (){
+        Route::get('',[\App\Http\Controllers\Manage\Faqs\FaqsController::class,'index'])->name('index');
+        Route::post('',[\App\Http\Controllers\Manage\Faqs\FaqsController::class,'store'])->name('store');
+        Route::post('{faq}',[\App\Http\Controllers\Manage\Faqs\FaqsController::class,'update'])->name('update');
+        Route::delete('{faq}',[\App\Http\Controllers\Manage\Faqs\FaqsController::class,'delete'])->name('delete');
 
     });
 

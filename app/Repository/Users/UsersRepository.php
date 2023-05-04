@@ -22,6 +22,7 @@ class UsersRepository implements UsersInterface
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
+            'is_active' => 1,
             'password' => Hash::make($request->password),
         ]);
         return response_success($item);
@@ -75,6 +76,13 @@ class UsersRepository implements UsersInterface
     {
         $item->delete();
         return response_success(true,'item deleted success');
+
+    }
+
+    public function members_activation($item)
+    {
+        $item->update(['is_active' => !$item->is_active]);
+        return response_success(true);
 
     }
 

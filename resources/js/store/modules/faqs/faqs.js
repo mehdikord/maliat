@@ -5,45 +5,36 @@ export default {
     state : {},
     mutations: {},
     actions:{
-        UserMembersIndex(){
+        FaqsIndex(){
             return new Promise((resolve,reject) => {
-                axios.get('users/members').then((result) => {
+                axios.get('faqs').then((result) => {
                     resolve(result);
                 }).catch(error => {
                     reject(error);
                 })
             } )
         },
-        UserMembersStore(_,item){
+        FaqsStore(_,item){
             return new Promise((resolve,reject) => {
-                axios.post('users/members',item).then((result) => {
+                axios.post('faqs',item).then((result) => {
                     resolve(result);
                 }).catch(error => {
                     reject(error);
                 })
             } )
         },
-        UserMembersEdit(_,item){
+        FaqsEdit(_,item){
             return new Promise((resolve,reject) => {
-                axios.post('users/members/'+item.id,item).then((result) => {
+                axios.post('faqs/'+item.id,item).then((result) => {
                     resolve(result);
                 }).catch(error => {
                     reject(error);
                 })
             } )
         },
-        UserMembersDelete(_,item){
+        FaqsDelete(_,item){
             return new Promise((resolve,reject) => {
-                axios.delete('users/members/'+item).then((result) => {
-                    resolve(result);
-                }).catch(error => {
-                    reject(error);
-                })
-            } )
-        },
-        UserMembersDChangeStatus(_,item){
-            return new Promise((resolve,reject) => {
-                axios.get('users/members/activation/'+item).then((result) => {
+                axios.delete('faqs/'+item).then((result) => {
                     resolve(result);
                 }).catch(error => {
                     reject(error);

@@ -21,6 +21,7 @@ interface UsersInterface
     public function members_update($request,$item);
 
     public function members_delete($item);
+    public function members_activation($item);
 
 
 
