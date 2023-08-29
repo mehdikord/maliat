@@ -3,6 +3,8 @@ import router from "./routes/manage";
 import show from "./manage/template/show.vue";
 import { Quasar , Notify,Dialog} from 'quasar';
 import quasarIconSet from 'quasar/icon-set/mdi-v7';
+import quasarLang from 'quasar/lang/fa-IR'
+
 // Import icon libraries
 import '@quasar/extras/roboto-font/roboto-font.css';
 import '@quasar/extras/fontawesome-v6/fontawesome-v6.css';
@@ -37,6 +39,7 @@ App.use(Quasar, {
 
     }, // import Quasar plugins and add here
     iconSet: quasarIconSet,
+    lang: quasarLang,
     config: {
 
       brand: {
@@ -44,7 +47,9 @@ App.use(Quasar, {
         // primary: '#e46262',
         // ... or all other brand colors
       },
-      notify: {}, // default set of options for Notify Quasar plugin
+
+
+        notify: {}, // default set of options for Notify Quasar plugin
 
     }
 })
@@ -88,16 +93,16 @@ App.mixin({
             }
         },
         NotifyCreate(){
-          this.NotifyMessage('the item created success','positive')
+            this.NotifyMessage('آیتم باموفقیت ایجاد شد','positive')
         },
         NotifyUpdate(){
-            this.NotifyMessage('the item updated success','positive')
+            this.NotifyMessage('آیتم باموفقیت ویرایش شد','positive')
         },
         NotifyDelete(){
-            this.NotifyMessage('the item deleted success','positive')
+            this.NotifyMessage('آیتم باموفقیت حذف شد','positive')
         },
         NotifyServerError(){
-            this.NotifyError('Server error');
+            this.NotifyError('خطای سرور !');
         },
         NotifySuccess(message){
             this.NotifyMessage(message,'positive')

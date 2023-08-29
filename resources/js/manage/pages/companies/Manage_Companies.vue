@@ -15,29 +15,33 @@
                         <div class="text-h6">افزودن آیتم جدید</div>
                     </q-card-section>
                     <q-card-section >
-                        <q-input v-model="add.name"  lazy-rules type="text" outlined label="نام" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
+                        <q-input v-model="add.name"  lazy-rules type="text" outlined label="نام شرکت / کسب و کار" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
                             <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
+                                <Error_Validation :errors="this.MixinValidation(errors,'name')"></Error_Validation>
                             </template>
                         </q-input>
-                        <q-input v-model="add.email"  lazy-rules type="email" outlined label="ایمیل" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'email')">
+
+                        <q-input v-model="add.economic_code"  lazy-rules type="text" outlined label="کد اقتصادی" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'economic_code')">
                             <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
+                                <Error_Validation :errors="this.MixinValidation(errors,'economic_code')"></Error_Validation>
                             </template>
                         </q-input>
-                        <q-input v-model="add.phone" lazy-rules type="number" outlined label="موبایل" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'phone')">
+                        <q-select
+                            class="q-my-xs"
+                            outlined
+                            transition-show="flip-up"
+                            transition-hide="flip-down"
+                            v-model="add.type"
+                            label="نوع شرکت"
+                            :options="comment_options"
+                            emit-value
+                            map-options
+                            behavior="menu"
+                        >
+                        </q-select>
+                        <q-input v-model="add.description"  lazy-rules type="textarea" outlined label="توضیحات" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'description')">
                             <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'phone')"></Error_Validation>
-                            </template>
-                        </q-input>
-                        <q-input v-model="add.password" lazy-rules type="password" outlined label="گذروارژه" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'password')">
-                            <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'password')"></Error_Validation>
-                            </template>
-                        </q-input>
-                        <q-input v-model="add.password_confirmation" lazy-rules type="password" outlined label="تکرار گذرواژه" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'password_confirmation')">
-                            <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'password_confirmation')"></Error_Validation>
+                                <Error_Validation :errors="this.MixinValidation(errors,'description')"></Error_Validation>
                             </template>
                         </q-input>
 
@@ -50,7 +54,7 @@
                 </q-card>
             </q-dialog>
 
-            <strong class="font-16">مدیران سیستم</strong>
+            <strong class="font-16">لیست کسب و کار ها</strong>
         </q-card-section>
 
         <q-card-section>
@@ -66,13 +70,7 @@
                 <template v-slot:loading>
                     <Global_Loading></Global_Loading>
                 </template>
-                <template v-slot:body-cell-phone="props">
-                    <q-td :props="props">
-                        <div v-if="props.row.phone">
-                            <q-chip color="teal-4" class="font-12">{{props.row.phone}}</q-chip>
-                        </div>
-                    </q-td>
-                </template>
+
                 <template v-slot:body-cell-tools="props">
                     <q-td :props="props">
                         <q-btn @click="dialog_edit[props.row.id] = true;errors=[]" glossy color="primary" size="sm" icon="mdi-pen" class="q-mx-xs">
@@ -93,28 +91,42 @@
                                 <div class="text-h6">ویرایش آیتم : {{props.row.name}}</div>
                             </q-card-section>
                             <q-card-section >
-                                <q-input v-model="props.row.name"  lazy-rules type="text" outlined label="نام" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
+
+                                <q-input v-model="props.row.name"  lazy-rules type="text" outlined label="نام شرکت / کسب و کار" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
                                     <template v-slot:error>
-                                        <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
-                                    </template>
-                                </q-input>
-                                <q-input v-model="props.row.email"  lazy-rules type="email" outlined label="ایمیل" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'email')">
-                                    <template v-slot:error>
-                                        <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
-                                    </template>
-                                </q-input>
-                                <q-input v-model="props.row.phone" lazy-rules type="number" outlined label="موبایل" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'phone')">
-                                    <template v-slot:error>
-                                        <Error_Validation :errors="this.MixinValidation(errors,'phone')"></Error_Validation>
+                                        <Error_Validation :errors="this.MixinValidation(errors,'name')"></Error_Validation>
                                     </template>
                                 </q-input>
 
+                                <q-input v-model="props.row.economic_code"  lazy-rules type="text" outlined label="کد اقتصادی" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'economic_code')">
+                                    <template v-slot:error>
+                                        <Error_Validation :errors="this.MixinValidation(errors,'economic_code')"></Error_Validation>
+                                    </template>
+                                </q-input>
+                                <q-select
+                                    class="q-my-xs"
+                                    outlined
+                                    transition-show="flip-up"
+                                    transition-hide="flip-down"
+                                    v-model="props.row.type"
+                                    label="نوع شرکت"
+                                    :options="comment_options"
+                                    emit-value
+                                    map-options
+                                    behavior="menu"
+                                >
+                                </q-select>
+                                <q-input v-model="props.row.description"  lazy-rules type="textarea" outlined label="توضیحات" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'description')">
+                                    <template v-slot:error>
+                                        <Error_Validation :errors="this.MixinValidation(errors,'description')"></Error_Validation>
+                                    </template>
+                                </q-input>
 
                             </q-card-section>
 
                             <q-card-actions align="right">
                                 <q-btn  label="بستن" color="red" v-close-popup />
-                                <q-btn @click="EditItem(props.row)" :loading="loading_add" label="ویرایش اطلاعات" color="indigo"/>
+                                <q-btn @click="EditItem(props.row)" :loading="loading_add" label="ویرایش آیتم" color="indigo"/>
                             </q-card-actions>
                         </q-card>
                     </q-dialog>
@@ -135,7 +147,7 @@
 import {mapActions} from "vuex";
 
 export default {
-    name: "Manage_Users_Managers",
+    name: "Manage_Companies",
     created() {
         this.GetItems();
 
@@ -148,12 +160,23 @@ export default {
             errors:[],
             dialog_add:false,
             dialog_edit:[],
+            comment_options : [
+                {
+                    label:"حقیقی",
+                    value :1,
+                },
+                {
+                    label:"حقوقی",
+                    value :0,
+                }
+            ],
             add:{
                 name:null,
-                email:null,
-                phone:null,
-                password:null,
-                password_confirmation:null,
+                economic_code:null,
+                type:1,
+                description:null,
+
+
             },
             item_columns:[
                 {
@@ -165,27 +188,35 @@ export default {
                     sortable: true
                 },
                 {
-                    name:'name',
+                    name:'title',
                     required: true,
-                    label: 'نام',
+                    label: 'نام کسب و کار',
                     align: 'left',
                     field: row => row.name,
                     sortable: true
                 },
                 {
-                    name:'email',
+                    name:'type',
                     required: true,
-                    label: 'ایمیل',
+                    label: 'نوع شرکت',
                     align: 'left',
-                    field: row => row.email,
+                    field: row => row.type,
                     sortable: true
                 },
                 {
-                    name:'phone',
+                    name:'economic_code',
                     required: true,
-                    label: 'موبایل',
+                    label: 'کد اقتصادی',
                     align: 'left',
-                    field: row => row.phone,
+                    field: row => row.economic_code,
+                    sortable: true
+                },
+                {
+                    name:'code',
+                    required: true,
+                    label: 'کد سیستمی',
+                    align: 'left',
+                    field: row => row.code,
                     sortable: true
                 },
                 {
@@ -200,15 +231,15 @@ export default {
     },
     methods:{
         ...mapActions([
-            "UserManagersIndex",
-            "UserManagersStore",
-            "UserManagersDelete",
-            "UserManagersEdit"
+            "CompaniesIndex",
+            "CompaniesStore",
+            "CompaniesDelete",
+            "CompaniesEdit"
 
         ]),
         GetItems(){
 
-            this.UserManagersIndex().then(res => {
+            this.CompaniesIndex().then(res => {
                 this.items = res.data.result;
                 this.loading_get=false;
             }).catch(error => {
@@ -217,7 +248,7 @@ export default {
         },
         AddItem(){
             this.loading_add=true;
-            this.UserManagersStore(this.add).then(res => {
+            this.CompaniesStore(this.add).then(res => {
                 this.items.unshift(res.data.result);
                 this.loading_add=false;
                 this.dialog_add=false;
@@ -234,7 +265,7 @@ export default {
         },
         EditItem(item){
             this.loading_add=true;
-            this.UserManagersEdit(item).then(res => {
+            this.CompaniesEdit(item).then(res => {
                 this.loading_add=false;
                 this.items = this.items.filter(item_get =>{
                     if (item_get.id === item.id){
@@ -267,7 +298,7 @@ export default {
                 },
                 persistent: true
             }).onOk(() => {
-                this.UserManagersDelete(id).then(res => {
+                this.CompaniesDelete(id).then(res => {
                     this.items = this.items.filter(item =>{
                         return item.id !== id;
                     })

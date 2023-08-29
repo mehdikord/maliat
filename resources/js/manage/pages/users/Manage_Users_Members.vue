@@ -2,7 +2,7 @@
     <q-card flat bordered>
 
         <q-card-section class="bg-blue-grey-14 text-white q-pb-lg">
-            <q-btn @click="dialog_add=true" color="deep-orange-7" icon="mdi-plus" push class="float-right" label="Add Item"></q-btn>
+            <q-btn @click="dialog_add=true" color="deep-orange-7" icon="mdi-plus" push class="float-right" label="افزودن آیتم"></q-btn>
             <q-dialog
                 v-model="dialog_add"
 
@@ -12,45 +12,41 @@
             >
                 <q-card style="max-width: 700px;width: 700px">
                     <q-card-section class="bg-deep-orange-9 text-white">
-                        <div class="text-h6">Add new item</div>
+                        <div class="text-h6">افزودن آیتم جدید</div>
                     </q-card-section>
                     <q-card-section >
-                        <q-input v-model="add.name"  lazy-rules type="text" outlined label="Name" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
+                        <q-input v-model="add.name"  lazy-rules type="text" outlined label="نام مشتری" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
                             <template v-slot:error>
                                 <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
                             </template>
                         </q-input>
-                        <q-input v-model="add.email"  lazy-rules type="email" outlined label="Email" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'email')">
+                        <q-input v-model="add.email"  lazy-rules type="email" outlined label="ایمیل (نام کاربری)" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'email')">
                             <template v-slot:error>
                                 <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
                             </template>
                         </q-input>
-                        <q-input v-model="add.phone" lazy-rules type="number" outlined label="Phone" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'phone')">
+                        <q-input v-model="add.phone" lazy-rules type="number" outlined label="موبابل" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'phone')">
                             <template v-slot:error>
                                 <Error_Validation :errors="this.MixinValidation(errors,'phone')"></Error_Validation>
                             </template>
                         </q-input>
-                        <q-input v-model="add.password" lazy-rules type="password" outlined label="Password" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'password')">
+                        <q-input v-model="add.description" lazy-rules type="textarea" outlined label="توضیحات" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'description')">
                             <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'password')"></Error_Validation>
+                                <Error_Validation :errors="this.MixinValidation(errors,'description')"></Error_Validation>
                             </template>
                         </q-input>
-                        <q-input v-model="add.password_confirmation" lazy-rules type="password" outlined label="Password confirmation" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'password_confirmation')">
-                            <template v-slot:error>
-                                <Error_Validation :errors="this.MixinValidation(errors,'password_confirmation')"></Error_Validation>
-                            </template>
-                        </q-input>
+
 
                     </q-card-section>
 
                     <q-card-actions align="right">
-                        <q-btn  label="Close" color="red" v-close-popup />
-                        <q-btn @click="AddItem" :loading="loading_add" label="Add item" color="green-9"/>
+                        <q-btn  label="بستن" color="red" v-close-popup />
+                        <q-btn @click="AddItem" :loading="loading_add" label="افزودن آیتم" color="green-9"/>
                     </q-card-actions>
                 </q-card>
             </q-dialog>
 
-            <strong class="font-16">System members list</strong>
+            <strong class="font-16">لیست مشتریان سیستم</strong>
         </q-card-section>
 
         <q-card-section>
@@ -105,28 +101,33 @@
                                 <div class="text-h6">Edit item : {{props.row.name}}</div>
                             </q-card-section>
                             <q-card-section >
-                                <q-input v-model="props.row.name"  lazy-rules type="text" outlined label="Name" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
+                                <q-input v-model="props.row.name"  lazy-rules type="text" outlined label="نام" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'name')">
                                     <template v-slot:error>
                                         <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
                                     </template>
                                 </q-input>
-                                <q-input v-model="props.row.email"  lazy-rules type="email" outlined label="Email" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'email')">
+                                <q-input v-model="props.row.email"  lazy-rules type="email" outlined label="ایمیل (نام کاربری)" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'email')">
                                     <template v-slot:error>
                                         <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
                                     </template>
                                 </q-input>
-                                <q-input v-model="props.row.phone" lazy-rules type="number" outlined label="Phone" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'phone')">
+                                <q-input v-model="props.row.phone" lazy-rules type="number" outlined label="موبایل" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'phone')">
                                     <template v-slot:error>
                                         <Error_Validation :errors="this.MixinValidation(errors,'phone')"></Error_Validation>
                                     </template>
                                 </q-input>
 
+                                <q-input v-model="add.row.description" lazy-rules type="textarea" outlined label="توضیحات" color="primary" class="q-my-xs" :error="this.MixinValidationCheck(errors,'description')">
+                                    <template v-slot:error>
+                                        <Error_Validation :errors="this.MixinValidation(errors,'description')"></Error_Validation>
+                                    </template>
+                                </q-input>
 
                             </q-card-section>
 
                             <q-card-actions align="right">
-                                <q-btn  label="Close" color="red" v-close-popup />
-                                <q-btn @click="EditItem(props.row)" :loading="loading_add" label="Update item" color="indigo"/>
+                                <q-btn  label="بستن" color="red" v-close-popup />
+                                <q-btn @click="EditItem(props.row)" :loading="loading_add" label="ویرایش آیتم" color="indigo"/>
                             </q-card-actions>
                         </q-card>
                     </q-dialog>
@@ -164,8 +165,7 @@ export default {
                 name:null,
                 email:null,
                 phone:null,
-                password:null,
-                password_confirmation:null,
+                description:null
             },
             item_columns:[
                 {
@@ -179,7 +179,7 @@ export default {
                 {
                     name:'name',
                     required: true,
-                    label: 'Name',
+                    label: 'نام مشتری',
                     align: 'left',
                     field: row => row.name,
                     sortable: true
@@ -187,7 +187,7 @@ export default {
                 {
                     name:'email',
                     required: true,
-                    label: 'Email',
+                    label: 'ایمیل',
                     align: 'left',
                     field: row => row.email,
                     sortable: true
@@ -195,7 +195,7 @@ export default {
                 {
                     name:'phone',
                     required: true,
-                    label: 'Phone',
+                    label: 'موبایل',
                     align: 'left',
                     field: row => row.phone,
                     sortable: true
@@ -203,7 +203,7 @@ export default {
                 {
                     name:'is_active',
                     required: true,
-                    label: 'Account Status',
+                    label: 'وضعیت حساب',
                     align: 'left',
                     field: row => row.is_active,
                     sortable: true
@@ -211,7 +211,7 @@ export default {
                 {
                     name:'tools',
                     required: true,
-                    label: 'Tools',
+                    label: 'ابزار',
                     align: 'left',
 
                 },
@@ -276,9 +276,8 @@ export default {
         },
         DeleteItem (id) {
             this.$q.dialog({
-                title: 'Confirm',
-                message: 'Are you sure to delete this item?',
-
+                title: 'هشدار !',
+                message: 'آیا مطمئن هستید آیتم مورد نظر حذف شود ؟',
                 ok: {
                     push: true,
                     color:'green-9',

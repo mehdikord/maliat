@@ -1,46 +1,95 @@
 <template>
 
     <q-list>
+        <template v-for="item in items">
 
-        <q-item clickable v-ripple :to="{name : 'dashboard'}">
-            <q-item-section avatar>
-                <q-icon color="indigo" name="mdi-view-dashboard" />
-            </q-item-section>
-            <q-item-section>Dashboard</q-item-section>
-        </q-item>
+            <template v-if="item.subs.length">
 
-        <q-expansion-item :content-inset-level="0.3" expand-separator icon="mdi-account-group" label="Users">
+                <q-expansion-item :content-inset-level="0.3" expand-separator :icon="item.icon" :label="item.title">
 
-            <q-item clickable v-ripple :to="{name : 'users_managers'}">
-                <q-item-section avatar>
-                    <q-icon color="indigo" name="mdi-account-tie" />
-                </q-item-section>
-                <q-item-section>Managers</q-item-section>
-            </q-item>
 
-            <q-item clickable v-ripple :to="{name : 'users_members'}">
-                <q-item-section avatar>
-                    <q-icon color="indigo" name="mdi-bluetooth" />
-                </q-item-section>
-                <q-item-section> Members </q-item-section>
+                    <q-item v-for="sub in item.subs" clickable v-ripple :to="{name : sub.link}">
+                        <q-item-section avatar>
+                            <q-icon color="deep-orange-8" :name="sub.icon" />
+                        </q-item-section>
+                        <q-item-section>
+                            {{sub.title}}
+                        </q-item-section>
+                    </q-item>
 
-            </q-item>
+                </q-expansion-item>
 
-        </q-expansion-item>
+            </template>
+            <template v-else>
+                <q-item clickable v-ripple :to="{name : item.link}">
+                    <q-item-section avatar>
+                        <q-icon color="deep-orange-8" :name="item.icon" />
+                    </q-item-section>
+                    <q-item-section>
+                        {{item.title}}
+                    </q-item-section>
+                </q-item>
+            </template>
 
-        <q-item clickable v-ripple :to="{name : 'faqs'}">
-            <q-item-section avatar>
-                <q-icon color="indigo" name="mdi-help" />
-            </q-item-section>
-            <q-item-section>Faqs</q-item-section>
-        </q-item>
+
+        </template>
 
     </q-list>
 </template>
 
 <script>
 export default {
-    name: "Manage_Template_Menu"
+    name: "Manage_Template_Menu",
+    data(){
+        return {
+            items:[
+                {
+                    title : "داشبورد",
+                    link : "dashboard",
+                    icon  : "mdi-view-dashboard",
+                    subs:[
+
+                    ]
+                },
+                {
+                    title : "کاربران سیستم",
+                    link : "",
+                    icon  : "mdi-account-group",
+                    subs:[
+                        {
+                            title : "مدیران",
+                            link : "users_managers",
+                            icon  : "mdi-account-tie",
+                        },
+                        {
+                            title : "مشتریان",
+                            link : "users_members",
+                            icon  : "mdi-bluetooth",
+                        },
+
+                    ]
+                },
+                {
+                    title : "کسب و کارها",
+                    link : "companies",
+                    icon  : "mdi-home",
+                    subs:[
+
+                    ]
+                },
+                {
+                    title : "سوالات متداول",
+                    link : "faqs",
+                    icon  : "mdi-help",
+                    subs:[
+
+                    ]
+                },
+
+
+            ]
+        }
+    }
 }
 </script>
 

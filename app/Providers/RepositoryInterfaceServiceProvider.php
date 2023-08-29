@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Interfaces\Auth\AuthInterface;
+use App\Interfaces\Companies\CompaniesInterface;
 use App\Interfaces\Faqs\FaqsInterface;
 use App\Interfaces\Profile\ProfileInterface;
 use App\Interfaces\Users\UsersInterface;
 use App\Repository\Auth\AuthRepository;
+use App\Repository\Companies\CompaniesRepository;
 use App\Repository\Faqs\FaqsRepository;
 use App\Repository\Profile\ProfileRepository;
 use App\Repository\Users\UsersRepository;
@@ -23,6 +25,7 @@ class RepositoryInterfaceServiceProvider extends ServiceProvider
         $this->app->bind(ProfileInterface::class,ProfileRepository::class);
         $this->app->bind(UsersInterface::class,UsersRepository::class);
         $this->app->bind(FaqsInterface::class,FaqsRepository::class);
+        $this->app->bind(CompaniesInterface::class,CompaniesRepository::class);
 
     }
 

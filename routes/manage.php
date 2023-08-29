@@ -53,6 +53,15 @@ Route::middleware('auth:admin')->group(function (){
 
     });
 
+    Route::group(['prefix' => 'companies','as' => 'companies.'],function (){
+        Route::get('',[\App\Http\Controllers\Manage\Company\CompanyController::class,'index'])->name('index');
+        Route::post('',[\App\Http\Controllers\Manage\Company\CompanyController::class,'store'])->name('store');
+        Route::post('{company}',[\App\Http\Controllers\Manage\Company\CompanyController::class,'update'])->name('update');
+        Route::delete('{company}',[\App\Http\Controllers\Manage\Company\CompanyController::class,'delete'])->name('delete');
+
+    });
+
+
 
 
 

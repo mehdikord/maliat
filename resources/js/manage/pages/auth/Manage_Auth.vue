@@ -7,10 +7,10 @@
                     <q-img class="top-img" src="/assets/images/bg/login-animation.svg"></q-img>
                 </div>
                 <q-card-section>
-                    <h5 class="text-center q-my-md">Login to Control Panel</h5>
-                    <p class="text-center text-grey-7 q-my-md">insert your email and password for login to account</p>
+                    <h5 class="text-center q-my-md">ورود به مدیریت برنامه</h5>
+                    <p class="text-center text-grey-7 q-my-md">برای ورود به حساب ایمیل و گذرواژه خود را وارد کنید</p>
                     <div class="q-my-xl q-px-lg ">
-                        <q-input lazy-rules  type="email" outlined v-model="login.email" label="Email" color="primary" class="q-my-md" :error="this.MixinValidationCheck(errors,'email')">
+                        <q-input lazy-rules  type="email" outlined v-model="login.email" label="ایمیل" color="primary" class="q-my-md" :error="this.MixinValidationCheck(errors,'email')">
                             <template v-slot:append>
                                 <q-icon size="lg" name="mdi-email" color="teal"/>
                             </template>
@@ -18,7 +18,7 @@
                                 <Error_Validation :errors="this.MixinValidation(errors,'email')"></Error_Validation>
                             </template>
                         </q-input>
-                        <q-input type="password" outlined v-model="login.password" label="Password" color="primary" class="q-my-md" :error="this.MixinValidationCheck(errors,'password')">
+                        <q-input type="password" outlined v-model="login.password" label="گذرواژه" color="primary" class="q-my-md" :error="this.MixinValidationCheck(errors,'password')">
                             <template v-slot:append>
                                 <q-icon size="lg" name="mdi-lock" color="red-6"/>
                             </template>
@@ -29,7 +29,7 @@
 
                     </div>
                     <div class="text-center q-mt-xl q-mb-lg">
-                        <q-btn color="indigo" :loading="loading" push padding="14px" icon-right="mdi-send" label="Login to account" @click="Login">
+                        <q-btn color="indigo" :loading="loading" push padding="14px" icon-right="mdi-send" label="ورود به مدیریت" @click="Login">
                             <template v-slot:loading>
                                 <q-spinner-hourglass class="on-left" />
                                 Loading...
@@ -94,7 +94,7 @@ export default {
 
 .top-img{
 
-    width: 320px !important;
+    width: 250px !important;
 
 }
 

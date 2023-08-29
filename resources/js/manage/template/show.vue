@@ -9,7 +9,7 @@
                     <q-avatar>
                         <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg"  alt="test">
                     </q-avatar>
-                    Control Panel
+                    مدیریت سیستم
                 </q-toolbar-title>
                 <q-btn color="teal" icon="mdi-account" round size="md">
                     <q-menu
@@ -34,7 +34,7 @@
                             <q-item clickable>
                                 <q-icon name="mdi-exit" size="md" color="dark"></q-icon>
                                 <strong class="q-mt-xs text-red">
-                                    Logout
+                                    خروج از حساب
                                 </strong>
 
                             </q-item>
